@@ -1,12 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APP</title>
+    <title>Web_Form</title>
 </head>
 <body>
-    <h1>Hola Django</h1>
+    <h1>Bienvenido</h1>
+
+    {% if user.is_authenticated %}
+        <p>Hola, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}">Cierra sesión</a>
+    {% else %}
+        <a href="{% url 'login' %}">Inicia sesión</a>
+    {% endif %}
+
+<hr>
+
+{% for mensaje in messages %}
+    <p style="color:green;"> {{mensaje}} </p>
+{% endfor %}
 </body>
 </html>
