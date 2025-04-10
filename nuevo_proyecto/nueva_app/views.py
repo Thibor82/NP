@@ -3,6 +3,30 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .forms import RegistroForm, LoginForm
+from django.views.generic import ListView, DetailView, CreateView
+from .models import Post
+
+# vistas genericas para trabajar CRUD
+
+class PostListView(ListView):
+    model = Post
+    template_name= "post_list.html"
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = "post_detail.html"
+
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content']
+    template_name = "post_create.html"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
 
 # Create your views here.
 def home(request):
