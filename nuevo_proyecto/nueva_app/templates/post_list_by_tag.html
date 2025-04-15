@@ -2,7 +2,7 @@
 {% block title%} Post List {% endblock %}
 
 {% block content %}
-<h1 class="titulo">Lista de posts</h1>
+<h1 class="titulo">Lista de posts por Tag: {{ tag.name }}</h1>
 <a href="{% url 'post_create' %}">Crea un  nuevo Post</a>
 <a href="{% url 'tag_list' %}">Lista de tags</a>
 <div class="grid">

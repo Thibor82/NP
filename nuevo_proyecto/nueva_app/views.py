@@ -4,11 +4,10 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .forms import RegistroForm, LoginForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, Tag, Comment
 from django.urls import reverse_lazy
 
 # vistas genericas para trabajar CRUD
-
 class PostListView(ListView):
     model = Post
     template_name= "post_list.html"
@@ -38,6 +37,31 @@ class PostDeleteView(DeleteView):
     model = Post
     template_name = 'post_confirm_delete.html'
     success_url = reverse_lazy('post_list')
+# Vistas para gestionar Tag.
+
+class TagListView(ListView):
+    model = Tag
+    template_name = "tag_list.html"
+
+class TagCreateView(CreateView):
+    model = Tag
+    fields = ['name']
+    template_name = "tag_create.html"
+    success_url = reverse_lazy('tag_list')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class TagDeleteView(DeleteView):
+    model = Tag
+    template_name = 'tag_confirm_delete.html'
+    success_url = reverse_lazy('tag_list')
+
+class PostbyTagView(ListView):
+    model = Post
+    template_name= "post_list_by_tag.html"
 
 
 
