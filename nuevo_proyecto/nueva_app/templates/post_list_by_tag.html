@@ -6,13 +6,13 @@
 <a href="{% url 'post_create' %}">Crea un  nuevo Post</a>
 <a href="{% url 'tag_list' %}">Lista de tags</a>
 <div class="grid">
-    {% for post in object_list %}
+    {% for post in object.posts.all %}
         <div class="tarjeta">
             <h2>{{ post.title }}</h2>
             <p>{{ post.content|truncatechars:10}}</p>
             <a href="{% url 'post_detail' post.pk %}">Lee el post</a>
-            {% for tag in post.tags.all %}
-                <a href="{% url 'post_list_by_tag' tag.pk %}"><p>{{ tag.name }}</p></a>
+            {% for tg in post.tags.all %}
+                <a href="{% url 'post_list_by_tag' tg.pk %}"><p>{{ tg.name }}</p></a>
             {% endfor %}
         </div>
     {% endfor %}

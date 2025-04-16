@@ -68,6 +68,15 @@ h1, h2, h3 {
     color:rgb(170, 214, 250);
     font-weight: 500;
 }
+
+.tarjeta a p{
+  margin-top:10px;
+  font-size: 50%;
+  color: rgb(170, 214, 250);
+}
+.tarjeta a p:hover{
+  color:#555;
+}
 .tarjeta a:hover{
     text-decoration:none;
     color:#555;

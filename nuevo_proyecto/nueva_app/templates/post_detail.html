@@ -19,6 +19,13 @@
     <a href="{% url 'post_delete' object.pk %}">Eliminar</a>
     
     <h2>Comentarios</h2>
+    <h2>Crea un nuevo Post</h2>
+    <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"> Comenta </button>
+    </form>
+    <hr>
     {% for comment in object.comment_set.all %}
         <hr>
         <div>

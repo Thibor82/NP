@@ -1,37 +1,103 @@
 from django.shortcuts import render, redirect
+from django.views.generic.edit import FormMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import RegistroForm, LoginForm
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .forms import RegistroForm, LoginForm, PostForm, CommentForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView 
+# CRUD - SQL ( CREATE, READ, UPDATE, DELETE)
 from .models import Post, Tag, Comment
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 # vistas genericas para trabajar CRUD
 class PostListView(ListView):
     model = Post
     template_name= "post_list.html"
 
-class PostDetailView(DetailView):
+class PostDetailView( FormMixin, DetailView):
     model = Post
     template_name = "post_detail.html"
+    form_class= CommentForm
+
+    def get_success_url(self):
+        return reverse('post_detail', kwargs={'pk': self.object.pk})
+    
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs) 
+        if 'form' not in context:
+            context['form'] = self.get_form()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.author = self.request.user
+        comment.post =self.object
+        comment.save()
+
+        return redirect(self.get_success_url())
+
+
 
 
 class PostCreateView(CreateView):
     model = Post
-    fields = ['title', 'content']
+    form_class= PostForm
     template_name = "post_create.html"
     success_url = reverse_lazy('post_list')
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        post = form.save(commit=False)
+        post.author = self.request.user
+        post.save()
+        
+
+        tag_string = form.cleaned_data.get('tag_string', '')
+        if tag_string:
+            tag_names =[t.strip() for t in tag_string.split(',') if t.strip()]
+            for name in tag_names:
+                exists= Tag.objects.filter(name__iexact=name).exists()
+                if not exists:
+                    new_tag =Tag.objects.create(name=name)
+                    post.tags.add(new_tag)
+                else:
+                    existing_tag = Tag.objects.get(name__iexact=name)
+                    post.tags.add(existing_tag)
+
         return super().form_valid(form)
 
 class PostUpdateView(UpdateView):
     model = Post
-    fields = ['title', 'content']
+    form_class = PostForm
     template_name = 'post_form.html'
     success_url = reverse_lazy('post_list')
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.author = self.request.user
+        post.save()
+
+        tag_string = form.cleaned_data.get('tag_string', '')
+        if tag_string:
+            tag_names =[t.strip() for t in tag_string.split(',') if t.strip()]
+            for name in tag_names:
+                exists= Tag.objects.filter(name__iexact=name).exists()
+                if not exists:
+                    new_tag =Tag.objects.create(name=name)
+                    post.tags.add(new_tag)
+                else:
+                    existing_tag = Tag.objects.get(name__iexact=name)
+                    post.tags.add(existing_tag)
+
+        return super().form_valid(form)
 
 class PostDeleteView(DeleteView):
     model = Post
@@ -50,7 +116,6 @@ class TagCreateView(CreateView):
     success_url = reverse_lazy('tag_list')
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
         return super().form_valid(form)
 
 
@@ -59,8 +124,8 @@ class TagDeleteView(DeleteView):
     template_name = 'tag_confirm_delete.html'
     success_url = reverse_lazy('tag_list')
 
-class PostbyTagView(ListView):
-    model = Post
+class PostbyTagView(DetailView):
+    model = Tag
     template_name= "post_list_by_tag.html"
 
 
