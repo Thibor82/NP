@@ -194,6 +194,9 @@ def logoutView(request):
     messages.info(request, "Has cerrado sesión. Vuelve pronto!")
     return redirect('home')
 
+def politica_cookies(request):
+    return render (request, 'politica_cookies.html')
+
 
 #Handlers exceptions 400, 403, 404, 500
 
