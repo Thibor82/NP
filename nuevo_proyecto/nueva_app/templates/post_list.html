@@ -11,9 +11,12 @@
             <h2>{{ post.title }}</h2>
             <p>{{ post.content|truncatechars:10}}</p>
             <a href="{% url 'post_detail' post.pk %}">Lee el post</a>
+            
+            <ul><p style="font-size: small; margin-top: 10px;">Tags:</p>
             {% for tag in post.tags.all %}
-                <a href="{% url 'post_list_by_tag' tag.pk %}"><p>{{ tag.name }}</p></a>
+                <li><a class="taglink" href="{% url 'post_list_by_tag' tag.pk %}">{{ tag.name }}</a></li>
             {% endfor %}
+            </ul>
         </div>
     {% endfor %}
 </div>

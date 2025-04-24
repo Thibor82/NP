@@ -18,7 +18,11 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Login</button>
+        <label>
+            <input type="checkbox" name="remember_me"> Recordar sesión
+        </label>
     </form>
+
 
     <p>¿Aún no tienes cuenta?<a href="{% url 'registro' %}">Registrate, it´s free!!</a></p>
     <p><a href="{% url 'home' %}">Vuelve al inicio</a></p>

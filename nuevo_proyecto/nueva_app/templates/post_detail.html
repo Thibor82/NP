@@ -15,8 +15,11 @@
         </li>
     </ul>
     {% endfor %}
-    <a href="{% url 'post_update' object.pk %}">Editar</a>
-    <a href="{% url 'post_delete' object.pk %}">Eliminar</a>
+    <!-- {% if user.is_authenticated or user.is_superuser} -->
+    {% if user.is_superuser or user == object.author %}
+        <a href="{% url 'post_update' object.pk %}">Editar</a>
+        <a href="{% url 'post_delete' object.pk %}">Eliminar</a>
+    {% endif %}
     
     <h2>Comentarios</h2>
     <h2>Crea un nuevo Post</h2>

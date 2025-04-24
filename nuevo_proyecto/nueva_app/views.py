@@ -4,10 +4,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .forms import RegistroForm, LoginForm, PostForm, CommentForm
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView 
-# CRUD - SQL ( CREATE, READ, UPDATE, DELETE)
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView # CRUD - SQL ( CREATE, READ, UPDATE, DELETE)
 from .models import Post, Tag, Comment
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # vistas genericas para trabajar CRUD
 class PostListView(ListView):
@@ -45,16 +45,16 @@ class PostDetailView( FormMixin, DetailView):
 
         return redirect(self.get_success_url())
 
-
-
-
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class= PostForm
     template_name = "post_create.html"
     success_url = reverse_lazy('post_list')
+    
 
     def form_valid(self, form):
+        # form.instance.author = self.request.user
+
         post = form.save(commit=False)
         post.author = self.request.user
         post.save()
@@ -74,11 +74,15 @@ class PostCreateView(CreateView):
 
         return super().form_valid(form)
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'post_form.html'
     success_url = reverse_lazy('post_list')
+
+    def test_func(self):
+        obj=self.get_object()
+        return self.request.user == obj.author or self.request.user.is_superuser
 
     def form_valid(self, form):
         post = form.save(commit=False)
@@ -99,10 +103,15 @@ class PostUpdateView(UpdateView):
 
         return super().form_valid(form)
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'post_confirm_delete.html'
     success_url = reverse_lazy('post_list')
+
+    def test_func(self):
+        obj=self.get_object()
+        return self.request.user == obj.author or self.request.user.is_superuser
+    
 # Vistas para gestionar Tag.
 
 class TagListView(ListView):
@@ -132,7 +141,9 @@ class PostbyTagView(DetailView):
 
 # Create your views here.
 def home(request):
+
     return render (request, 'home.html')
+
 
 def loginView(request):
     if request.method == 'POST':
@@ -140,6 +151,7 @@ def loginView(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
+            remember= request.POST.get('remember_me')
 
             try:
                 user = User.objects.get(email=email)
@@ -148,8 +160,13 @@ def loginView(request):
                 return redirect('login')
             
             user_auth= authenticate(request, username=user.username, password=password)
+
             if user_auth is not None:
                 login(request, user_auth)
+
+                if not remember:
+                    request.session.set_expiry(0)
+
                 messages.success(request, "Has iniciado sesión correctamente")
                 return redirect('home')
             else:
@@ -157,6 +174,7 @@ def loginView(request):
                 return redirect('login')
     else:
         form = LoginForm()
+
     return render(request, 'login.html', {'form': form})
 
 
@@ -175,3 +193,15 @@ def logoutView(request):
     logout(request)
     messages.info(request, "Has cerrado sesión. Vuelve pronto!")
     return redirect('home')
+
+
+#Handlers exceptions 400, 403, 404, 500
+
+def custom_404(request, exception):
+    return render(request, "404.html", {"path": request.path}, status=404)
+
+def custom_403(request, exception):
+    return render(request, "403.html", status=403)
+
+def custom_500(request):
+    return render(request, "500.html", status=500)

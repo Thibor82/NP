@@ -1,5 +1,7 @@
-from nuevo_proyecto.urls import path, include
+from django.urls import path, include
 from . import views
+from django.views.generic import RedirectView
+from django.templatetags.static import static as static_url
 from .views import PostListView, PostCreateView, PostDetailView, PostUpdateView, PostDeleteView
 from .views import TagListView, TagCreateView, TagDeleteView, PostbyTagView
 
@@ -7,8 +9,11 @@ from .views import TagListView, TagCreateView, TagDeleteView, PostbyTagView
 
 
 
+
+
 urlpatterns = [
     path('', views.home, name='home' ),
+    path('favicon.ico/', RedirectView.as_view(url= static_url('img/favicon.ico'), permanent= True)),
     path('login/', views.loginView, name='login'),
     path('registro/', views.registroView, name='registro'),
     path('logout/', views.logoutView, name='logout'),
@@ -24,3 +29,5 @@ urlpatterns = [
 ]
 
 # urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
