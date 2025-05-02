@@ -28,14 +28,18 @@
     <div class="container">
         {%block content %}{% endblock %}
     </div>
-    <div id="cookie-banner">
+    <!-- <div id="cookie-banner">
         <p>Usamos cookies analíticas por que sí.</p>
         <button id="btn-accept">Aceptar cookies</button>
         <button id="btn-reject">Rechazar</button>
         <a href="{% url 'politica_cookies' %}">Léete las malditas leyes!</a>
-    </div>
+    </div> -->
+    
+    {% include "partials/cookie_banner.html" %}
 
-    <script src="{% static 'js/cookie-consent.js' %}"></script>
-    {% block extra_js %}{% endblock %}
+    <!-- <script src="{% static 'js/cookie-consent.js' %}"></script> -->
+    {% block extra_js %}
+    {% endblock %}
+    <script src="{% static 'js/cookie_banner2.js' %}" defer></script>
 </body>
 </html>
