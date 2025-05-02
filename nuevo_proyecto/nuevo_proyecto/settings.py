@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1@*7=m=-rmz2^zp)_xy_$6$i8b$%1f1xv!+j8s(80$l5muo(cm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'rest_framework',
     'django_filters',
+    'corsheaders',
 
 ]
 
@@ -41,6 +42,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', #*MIDDLEWARE,
 ]
 
 ROOT_URLCONF = 'nuevo_proyecto.urls'
@@ -128,3 +130,5 @@ SECURE_HSTS_SECONDS = 31536000
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
+
+CORS_ALLOWED_ORIGINS =['http://127.0.0.1:8000']

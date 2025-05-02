@@ -12,7 +12,7 @@ class PostFilter(FilterSet):
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().order_by('-created_at')
+    queryset = Post.objects.all().prefetch_related("tags").order_by('-created_at')
     serializer_class = PostSerializer
     filterset_class = PostFilter
     permission_classes = [IsAuthenticatedOrReadOnly]
