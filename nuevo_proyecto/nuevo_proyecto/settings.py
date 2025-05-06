@@ -1,4 +1,7 @@
 from pathlib import Path
+from decouple import config
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,7 +16,7 @@ SECRET_KEY = 'django-insecure-1@*7=m=-rmz2^zp)_xy_$6$i8b$%1f1xv!+j8s(80$l5muo(cm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*']
 
 
 # Application definition
@@ -44,6 +47,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware', #*MIDDLEWARE,
 ]
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 
 ROOT_URLCONF = 'nuevo_proyecto.urls'
 
@@ -70,10 +74,15 @@ WSGI_APPLICATION = 'nuevo_proyecto.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(
+        os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True,
+        )
+
+        #Conexion DB local con sqlite:
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
 }
 
 
@@ -132,3 +141,14 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS =['http://127.0.0.1:8000']
+
+#API FROM THIRDS CONFIG
+
+OWM_KEY = config('OWM_KEY')
+FRA_KEY = config('FRA_KEY')
+CACHES = {
+    'default':{
+        'BACKEND':'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': BASE_DIR/'cache',
+    }
+}

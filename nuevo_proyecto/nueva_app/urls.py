@@ -27,6 +27,8 @@ urlpatterns = [
     path('tags/<int:pk>/delete/', TagDeleteView.as_view(), name='tag_delete'),
     path('post_by_tag/<int:pk>/', PostbyTagView.as_view(), name='post_list_by_tag'),
     path('politica-cookies/', views.politica_cookies, name='politica_cookies'),
+    path('weather/', views.weather, name ='weather'),
+    path('recipe/', views.recipe, name ='recipe'),
 ]   
 
 # urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

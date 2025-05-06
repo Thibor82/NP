@@ -40,6 +40,46 @@
     <!-- <script src="{% static 'js/cookie-consent.js' %}"></script> -->
     {% block extra_js %}
     {% endblock %}
+    <div id="meteo" class="tarjeta">
+        <p>Cargando meteo...</p>
+    </div>
+    <div id="receta" class="tarjeta">
+        <p>Cargando receta...</p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch(`/recipe/?t=${Date.now()}`)
+            .then(r => r.json())
+            .then(d => {
+                if(d.error){
+                    document.getElementById('receta').textContent='Sin receta'
+                }
+                else{
+                    document.getElementById('receta').innerHTML =`
+                    <strong>${d.name}</strong><br>
+                    <em>${d.category} - ${d.area}</em><br><br>
+                    <img src="${d.image}" alt="${d.name}" title="${d.name}">
+                    <p>${d.instructions}</p>
+                    ${d.youtube? `<a href="${d.youtube}" target="_blank">Ver vídeo</a>`:''}`;
+                }
+            })
+            .catch(() =>{ document.getElementById('receta').textContent ='Error al cargar la receta';
+        });
+    });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/weather/?city=Santander')
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('meteo').innerHTML =
+                `<strong>${d.city}</strong><br>
+                ${d.temp}&nbsp;ºC<br>
+                <img src= "https://openweathermap.org/img/wn/${d.icon}@2x.png" alt="${d.desc}" title=${d.desc}">`;
+            })
+            .catch(() => document.getElementById('meteo').textContent ='Sin datos');
+        });
+    </script>
     <script src="{% static 'js/cookie_banner2.js' %}" defer></script>
 </body>
 </html>

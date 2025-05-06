@@ -9,6 +9,14 @@ from .models import Post, Tag, Comment
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
+#imports para API de terceros y cache
+import requests
+from django.http import JsonResponse
+from django.views.decorators.cache import cache_page
+from django.conf import settings
+
+
+
 # vistas genericas para trabajar CRUD
 class PostListView(ListView):
     model = Post
@@ -208,3 +216,48 @@ def custom_403(request, exception):
 
 def custom_500(request):
     return render(request, "500.html", status=500)
+
+#Vista para API de terceros OPENWEATHER
+
+@cache_page(60*30)
+
+def weather(request):
+    city = request.GET.get('city', 'Santander')
+    params = {
+        'q': city,
+        'units':'metric',
+        'appid' : settings.OWM_KEY,
+        'lang': 'es'
+    }
+    r = requests.get(
+        'https://api.openweathermap.org/data/2.5/weather',
+        params=params, timeout=5
+    )
+    data =r.json()
+    respuesta = {
+        'city': data['name'],
+        'temp':data['main']['temp'],
+        'icon': data['weather'][0]['icon'],
+        'desc': data['weather'][0]['description'],
+    }
+    return JsonResponse(respuesta)
+
+def recipe(request):
+    key_mealdb = settings.FRA_KEY
+    url =f'https://www.themealdb.com/api/json/v1/{key_mealdb}/random.php'
+    try:
+        r = requests.get(url, timeout=5)
+        data = r.json()
+        meal =data['meals'][0]
+        respuesta ={
+            'name': meal['strMeal'],
+            'category': meal['strCategory'],
+            'area': meal['strArea'],
+            'instructions': meal['strInstructions'],
+            'image': meal['strMealThumb'],
+            'tags':meal['strTags'],
+            'youtube': meal['strYoutube'],
+        }
+    except Exception as e:
+        respuesta= {'error': 'No se pudo obtener respuesta'}
+    return JsonResponse(respuesta)
