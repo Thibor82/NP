@@ -1,0 +1,410 @@
+[
+{
+  "model": "nueva_app.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Django",
+    "posts": [
+      1,
+      7,
+      15,
+      17
+    ]
+  }
+},
+{
+  "model": "nueva_app.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Python",
+    "posts": []
+  }
+},
+{
+  "model": "nueva_app.tag",
+  "pk": 4,
+  "fields": {
+    "name": "GLS",
+    "posts": []
+  }
+},
+{
+  "model": "nueva_app.tag",
+  "pk": 6,
+  "fields": {
+    "name": "Nuevo",
+    "posts": [
+      2
+    ]
+  }
+},
+{
+  "model": "nueva_app.tag",
+  "pk": 7,
+  "fields": {
+    "name": "Antiguo",
+    "posts": [
+      2
+    ]
+  }
+},
+{
+  "model": "nueva_app.tag",
+  "pk": 8,
+  "fields": {
+    "name": "Latin",
+    "posts": [
+      1,
+      3,
+      15
+    ]
+  }
+},
+{
+  "model": "nueva_app.tag",
+  "pk": 9,
+  "fields": {
+    "name": "Otro",
+    "posts": [
+      17
+    ]
+  }
+},
+{
+  "model": "nueva_app.tag",
+  "pk": 10,
+  "fields": {
+    "name": "mas",
+    "posts": [
+      17
+    ]
+  }
+},
+{
+  "model": "nueva_app.tag",
+  "pk": 11,
+  "fields": {
+    "name": "Queen",
+    "posts": [
+      15
+    ]
+  }
+},
+{
+  "model": "nueva_app.tag",
+  "pk": 12,
+  "fields": {
+    "name": "Post",
+    "posts": [
+      7,
+      17
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$OjyDrPUpsSsvqrlJC49kbI$tM1YUUjfP5LZuXx7PdX+CRs5bE04leJbDSjeKYcC+t8=",
+    "last_login": "2025-05-06T12:37:22.349Z",
+    "is_superuser": false,
+    "username": "Thibor",
+    "first_name": "",
+    "last_name": "",
+    "email": "yosoybatman@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-03T16:12:22.424Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$4DaE5jUMHj4BZPYk65frYQ$FV7lkHBItzOicb0qvUWeKt96Sv26/nNnljYJvvzyA0E=",
+    "last_login": "2025-04-22T13:09:26.222Z",
+    "is_superuser": false,
+    "username": "ruben",
+    "first_name": "",
+    "last_name": "",
+    "email": "asdasd@sdfsf.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-22T13:09:14.678Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "622uh34plsbfogv3lopdozkbml155fgj",
+  "fields": {
+    "session_data": ".eJxVjsEOwiAQRP-FsyFQaAo9evcbyC67WNSAKW2iMf671njQ67w3k3mIAOsyhbXxHDKJUWix-80Q4pnLBugE5VhlrGWZM8pNkV_a5KESX_Zf929ggja926jQUbLYO22RbHRJad8lZmOtNtT1Bkx0HajBKAs-6iFF8uBg8Og1fl41bi3XEvh2zfNdjOr5ApPzPzA:1uAqDs:Uyld0j2jkIHowSlAZ01TrPtM-oqN_C5qHlaHzVQYqoA",
+    "expire_date": "2025-05-16T13:14:36.296Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fmqzphwujgsl81kqzblwtsijbzdyttq2",
+  "fields": {
+    "session_data": ".eJxVjsEOwiAQRP-FsyFQaAo9evcbyC67WNSAKW2iMf671njQ67w3k3mIAOsyhbXxHDKJUWix-80Q4pnLBugE5VhlrGWZM8pNkV_a5KESX_Zf929ggja926jQUbLYO22RbHRJad8lZmOtNtT1Bkx0HajBKAs-6iFF8uBg8Og1fl41bi3XEvh2zfNdjOr5ApPzPzA:1uBwU9:_BIl15GpmQOv5AWjQXtUsK-nVXppyYMdlr4qmYfnQN4",
+    "expire_date": "2025-05-19T14:07:57.161Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "gb9vi0fgi2gq1kmlx4hvfvnmhfv769kw",
+  "fields": {
+    "session_data": ".eJxVjsEOwiAQRP-FsyFQaAo9evcbyC67WNSAKW2iMf671njQ67w3k3mIAOsyhbXxHDKJUWix-80Q4pnLBugE5VhlrGWZM8pNkV_a5KESX_Zf929ggja926jQUbLYO22RbHRJad8lZmOtNtT1Bkx0HajBKAs-6iFF8uBg8Og1fl41bi3XEvh2zfNdjOr5ApPzPzA:1uA890:kD2LPtosGbP10vK4A-rcv1V1H-qZJDsAG9ALY02Ie10",
+    "expire_date": "2025-05-14T14:10:38.319Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "impdlro8s8xesfi8ykhtfarmiawlkdyv",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAGaACX7j0DmWFAqgaS0q6Md9cmXej2v_f-S0Tc1hq3kZc4szgLEKffjTA9ctsB37Hduky9rctMclfkQYe8ds7Py-H-HVQc9VuTIs_F0uTBEtvki4KgS87GWjCsJ4MmeY3KGWUxJHAlcUCPLlAAAvH-AOqhN_M:1u2wRI:URq1KLoe-pVkb7jPkOnRvKvtKUJ8ZsOVfo9iYGfNX8k",
+    "expire_date": "2025-04-24T18:15:48.139Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lxah50ysw22hs1bmgksp4s0ig6h4yvyp",
+  "fields": {
+    "session_data": ".eJxVjsEOwiAQRP-FsyFQaAo9evcbyC67WNSAKW2iMf671njQ67w3k3mIAOsyhbXxHDKJUWix-80Q4pnLBugE5VhlrGWZM8pNkV_a5KESX_Zf929ggja926jQUbLYO22RbHRJad8lZmOtNtT1Bkx0HajBKAs-6iFF8uBg8Og1fl41bi3XEvh2zfNdjOr5ApPzPzA:1u7wjt:C8PvUPEzCBuxMPZJHO6oPv7zZqhXNQACnIk973YJRa4",
+    "expire_date": "2025-05-08T13:35:41.087Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "n7ppqeh9h3c09yxkb9tp356bbwdqwzad",
+  "fields": {
+    "session_data": ".eJxVjsEOwiAQRP-FsyFQaAo9evcbyC67WNSAKW2iMf671njQ67w3k3mIAOsyhbXxHDKJUWix-80Q4pnLBugE5VhlrGWZM8pNkV_a5KESX_Zf929ggja926jQUbLYO22RbHRJad8lZmOtNtT1Bkx0HajBKAs-6iFF8uBg8Og1fl41bi3XEvh2zfNdjOr5ApPzPzA:1uCHY2:sAPJlFlcB_9lf5Y1_T-5RIDqnw60A_M6FL5nll0dMlU",
+    "expire_date": "2025-05-20T12:37:22.353Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vb5llvgf8helx3p4n1qpn6iux890r2sx",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAGaACX7j0DmWFAqgaS0q6Md9cmXej2v_f-S0Tc1hq3kZc4szgLEKffjTA9ctsB37Hduky9rctMclfkQYe8ds7Py-H-HVQc9VuTIs_F0uTBEtvki4KgS87GWjCsJ4MmeY3KGWUxJHAlcUCPLlAAAvH-AOqhN_M:1u9luT:A5vfekAWWRmrab4uevVd5goZYpkeY7msTx3FbwcIO00",
+    "expire_date": "2025-05-13T14:26:09.067Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 1,
+  "fields": {
+    "content": "Lo retiro, odio el Latín.",
+    "post": 1,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-09T15:51:59.764Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 3,
+  "fields": {
+    "content": "Es la primera vez que comento",
+    "post": 3,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-10T13:53:25.431Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 4,
+  "fields": {
+    "content": "asdasdasdasdaaaaghjg  rtyrghfgh",
+    "post": 1,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-16T13:31:39.869Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 5,
+  "fields": {
+    "content": "asdasdasdasdaaaaghjg  rtyrghfgh",
+    "post": 1,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-16T13:36:26.516Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 6,
+  "fields": {
+    "content": "adlkajsdhalsdasddas   asdasdase",
+    "post": 1,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-16T13:36:38.992Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 7,
+  "fields": {
+    "content": "Hola que tal soy un comentario random",
+    "post": 1,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-16T13:36:56.470Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 8,
+  "fields": {
+    "content": "Primer!!!",
+    "post": 2,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-16T13:37:36.849Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 9,
+  "fields": {
+    "content": "Hola de nuevo",
+    "post": 2,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-16T13:37:45.850Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 10,
+  "fields": {
+    "content": "Hello!!",
+    "post": 15,
+    "author": [
+      "ruben"
+    ],
+    "created_at": "2025-04-22T13:19:00.007Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 11,
+  "fields": {
+    "content": "Hello dear",
+    "post": 17,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-22T13:23:22.118Z"
+  }
+},
+{
+  "model": "nueva_app.comment",
+  "pk": 12,
+  "fields": {
+    "content": "rtehrjhtfknyu",
+    "post": 17,
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-22T13:39:39.973Z"
+  }
+},
+{
+  "model": "nueva_app.post",
+  "pk": 1,
+  "fields": {
+    "title": "Primer Post",
+    "content": "Lorem ipsum doleor sit aemet...",
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-09T13:31:53.805Z"
+  }
+},
+{
+  "model": "nueva_app.post",
+  "pk": 2,
+  "fields": {
+    "title": "Segundo Post",
+    "content": "Este sin latín.",
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-09T16:03:22.902Z"
+  }
+},
+{
+  "model": "nueva_app.post",
+  "pk": 3,
+  "fields": {
+    "title": "Tercer Post",
+    "content": "Estoy creando un sistema de entradas en Django",
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-10T13:41:21.065Z"
+  }
+},
+{
+  "model": "nueva_app.post",
+  "pk": 7,
+  "fields": {
+    "title": "testeo los post",
+    "content": "Parece que no, pero es que si.",
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-10T16:45:59.846Z"
+  }
+},
+{
+  "model": "nueva_app.post",
+  "pk": 8,
+  "fields": {
+    "title": "The new post",
+    "content": "Probando cosillas",
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-10T17:34:30.051Z"
+  }
+},
+{
+  "model": "nueva_app.post",
+  "pk": 15,
+  "fields": {
+    "title": "Another One",
+    "content": "Bite de Dust",
+    "author": [
+      "Thibor"
+    ],
+    "created_at": "2025-04-15T16:16:12.703Z"
+  }
+},
+{
+  "model": "nueva_app.post",
+  "pk": 17,
+  "fields": {
+    "title": "dafiughandclkhnfal",
+    "content": "sdlfuhncalskdfnhca sd SDLGFGHMVSDLIFJS\r\nasdadfsdfasqaswdasdasd",
+    "author": [
+      "ruben"
+    ],
+    "created_at": "2025-04-22T13:10:09.320Z"
+  }
+}
+]

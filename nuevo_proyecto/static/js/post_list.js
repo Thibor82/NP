@@ -2,12 +2,12 @@ function cardHTML(post){
     return `
         <div class="tarjeta">
             <h2>${ post.title }</h2>
-            <p>${ post.content.slice(0,25)}...</p>
-            <a href="/post/${post.id}/">Lee el post</a>
+            <p>${ post.content.slice(0,25) }...</p>
+            <a href="/post/${ post.id }/">Lee el post</a>
 
             <ul><p style="font-size: small; margin-top: 10px;">Tags:</p>
-            ${post.tags.map(
-                t => `<li><a class="taglink" href="/post_by_tag/${t.id}/">${ t.name }</a></li>`
+            ${ post.tags.map(
+                t => `<li><a class="taglink" href="/post_by_tag/${ t.id }/">${ t.name }</a></li>`
             ).join('')}
             </ul>
         </div>`;
