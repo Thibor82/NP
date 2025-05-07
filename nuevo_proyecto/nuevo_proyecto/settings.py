@@ -75,9 +75,9 @@ WSGI_APPLICATION = 'nuevo_proyecto.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.parse(
-        os.getenv('DATABASE_URL'),
+        default= f'sqlite:///{BASE_DIR/"db.sqlite3"}',
         conn_max_age=600,
-        ssl_require=True,
+        ssl_require= os.getenv('DATABASE_URL', '').startswith('postgres')
         )
 
         #Conexion DB local con sqlite:
