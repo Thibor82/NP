@@ -158,3 +158,5 @@ CACHES = {
         'LOCATION': BASE_DIR/'cache',
     }
 }
+
+CSRF_TRUSTED_ORIGINS = ["https://*.railway.app"]
