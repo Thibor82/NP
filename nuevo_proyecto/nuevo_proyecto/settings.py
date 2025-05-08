@@ -2,6 +2,7 @@ from pathlib import Path
 from decouple import config
 import os
 import dj_database_url
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,18 +74,24 @@ WSGI_APPLICATION = 'nuevo_proyecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+DEFAULT_SQLITE=f'sqlite:///{BASE_DIR/"db.sqlite3"}'
+DATABASE_URL= config('DATABASE_URL')
+DATABASE_PGA= config('DATABASE_PGA')
 DATABASES = {
-    'default': dj_database_url.config(
-        default= f'sqlite:///{BASE_DIR/"db.sqlite3"}',
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL'),
         conn_max_age=600,
-        ssl_require= os.getenv('DATABASE_URL', '').startswith('postgres')
+        ssl_require= True,
         )
+
 
         #Conexion DB local con sqlite:
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
 }
-
+# if DATABASES["default"]["ENGINE"].endswith("postgresql"):
+#     DATABASES["default"].setdefault("OPTIONS",{})
+#     DATABASES["default"]["OPTIONS"].setdefault("sslmode", "require")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
